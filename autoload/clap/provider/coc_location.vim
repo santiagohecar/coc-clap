@@ -17,7 +17,8 @@ endfunction
 function! s:location.sink(curline) abort
   let l:parsed = s:parse_location(a:curline)
   if type(l:parsed) == v:t_dict
-    execute 'buffer' bufnr(l:parsed["filename"], 1)
+    "execute 'buffer' bufnr(l:parsed["filename"], 1)
+    execute 'e' l:parsed["filename"]
     call cursor(l:parsed["lnum"], l:parsed["col"])
     normal! zz
     call call('clap#util#blink', g:clap_provider_coc_blink)
